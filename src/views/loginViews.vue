@@ -1,9 +1,10 @@
 <template>
-    <div class="login-form">
-      <form action="" @submit.prevent="login">
-        <div class="form-input">
-          <input type="text" placeholder="Enter email" v-model="user.email">
-        </div>
+    <div class="login-container">
+        <h2>Login</h2>
+           <form action="" @submit.prevent="login">
+            <div class="form-input">
+              <input type="text" placeholder="Enter username" v-model="user.username">
+            </div>
 
         <div class="form-input">
           <input type="password" placeholder="Enter password" v-model="user.password">
@@ -14,37 +15,35 @@
         </div>
       </form>
     </div>
+</template>
 
-  </template>
-  
-  <script>
-  import { ref } from 'vue';
-  import axios from 'axios'
-  
-  export default {
-    setup() {
-      
-      const user = ref({
-          email: '',
-          password: ''
-      })
-      console.log(user.value)
-  
-  
-      const Login = async() => {
-          console.log(user);
-        try {
-          const response = await axios.post('http://127.0.0.1:8000/api/login', user.value);
-          console.log(response);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-  
-      return { Login, user };
+<script setup>
+import axios from 'axios';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+
+const user = ref({
+    username: '',
+    password: ''
+})
+
+const router = useRouter();
+const store = useStore()
+
+const login = async ()=> {
+    try {
+        const response = await axios.post('http://127.0.0.1:8000/api/login', user.value);
+        console.log(response.data.token);
+        const authToken = response.data.token;
+        localStorage.setItem('auth-token', authToken)
+        store.commit('setIsLoggedIn')
+        router.push({name: 'dashboard'});
+    } catch (error) {
+        console.log(error);
     }
-  }
-  </script>
+}
+</script>
   
   <style scoped>
  /* Style the form container */
@@ -59,7 +58,7 @@
 }
 
 .form-input input {
-  width: 100%;
+  width: 20%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -70,7 +69,7 @@
 
 /* Style the submit button */
 .form-input button {
-  width: 100%;
+  width: 20%;
   padding: 10px;
   font-size: 16px;
   color: #fff;
