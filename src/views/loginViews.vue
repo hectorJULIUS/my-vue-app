@@ -30,6 +30,8 @@ const user = ref({
 
 const router = useRouter();
 const store = useStore()
+store.commit('setIsLoggedIn')
+console.log(store.state.isLoggedIn);
 
 const login = async ()=> {
     try {
@@ -39,6 +41,7 @@ const login = async ()=> {
         localStorage.setItem('auth-token', authToken)
         store.commit('setIsLoggedIn')
         router.push({name: 'dashboard'});
+        console.log(response);
     } catch (error) {
         console.log(error);
     }

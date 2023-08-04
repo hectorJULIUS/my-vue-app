@@ -1,62 +1,41 @@
 <template>
-    <h1 style="text-align: center;border: 2px solid grey; box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); padding: 20px; color: black;">WELCOME YOUR DASHBOARD</h1>
-    <div class="dashboard">
-    <ul class="menu">
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Statements</a></li>
-        <li><a href="#">Reports</a></li>
-        <li><a href="#">Logout</a></li>
-    </ul>
-    </div>
+  <v-layout class="rounded rounded-md">
+      <v-app-bar title="CountyWide PropertyManagement"></v-app-bar>
 
+      <v-navigation-drawer permanent>
+          <v-list-item prepend-avatar="https://randomuser.me/api/portraits/men/10.jpg" title="John Man"></v-list-item>
+
+          <v-divider></v-divider>
+
+          <v-list density="compact" nav>
+              <v-list-item style="text-align: left;" prepend-icon="mdi-home" title="Dashboard" value="dashboard" to="/dashboard/home"></v-list-item>
+              <v-list-item style="text-align: left;" prepend-icon="mdi-account-check" title="Profile" value="profile" to="/dashboard/profile"></v-list-item>
+              <v-list-item title="Logout" prepend-icon="mdi-logout" value="profile" @click="handleLogout" style="text-align: left;"></v-list-item></v-list>
+      </v-navigation-drawer>
+
+      <v-main class="d-flex align-center justify-center" style="min-height: 300px;">
+          <router-view></router-view>
+      </v-main>
+  </v-layout>
 </template>
 
 <script>
-export default{
-    name: 'DashboardView'
-}
+export default {
+  name: 'DashboardView',
+  methods: {
+    handleLogout() {
+      // Delete the authentication token from localStorage (or wherever you store it).
+      localStorage.removeItem('auth-token');
+
+      // Call the logout mutation to reset the isLoggedIn state to false.
+      this.$store.commit('logout');
+
+      // Redirect the user to the login page.
+      this.$router.push('/login');
+    },
+  },
+};
 </script>
 
-<style scoped>
-/* Reset default styles for ul and li */
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Style the dashboard container */
-.dashboard {
-  background-color: #f0f0f0;
-  padding: 20px;
-  border-radius: 0px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  width: 200px;
-}
-
-/* Style the menu items */
-.menu li {
-  margin-bottom: 10px;
-}
-
-.menu li a {
-  display: block;
-  padding: 10px;
-  color: #333;
-  text-decoration: none;
-  border-radius: 3px;
-  transition: background-color 0.3s ease;
-}
-
-/* Hover effect for menu items */
-.menu li a:hover {
-  background-color: #e0e0e0;
-}
 
 
-</style>
-
-<style scoped>
-
-</style>

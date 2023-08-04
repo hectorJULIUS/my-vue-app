@@ -1,58 +1,42 @@
 <template>
-  
-  <nav class="navbar">
-  <router-link to="/">Home</router-link> 
-  <router-link to="/about">About</router-link> 
-  <router-link to="/signup"><button>Signup</button></router-link> 
-  <router-link to="/login"><button>login</button></router-link>
-</nav>
+  <v-toolbar >
+    <v-btn to="/">Home</v-btn>
+    <v-btn to="/about">About</v-btn>
+    <v-btn to="/signup">Signup</v-btn>
+    <v-btn to="/login">Login</v-btn>
 
-
-{{ store.state.isLoggedIn }}
-
+  </v-toolbar>
+  {{ store.state.isLoggedIn }}
   <router-view/>
 </template>
-<script setup>
-import {useStore} from 'vuex';
-const store = useStore();
 
- </script>
+<script setup>
+import { useStore } from 'vuex';
+
+const store = useStore()
+
+// store.commit('setIsLoggedIn')
+</script>
 
 <style>
-.navbar {
-  background-color: black;
-  color: white;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 10px;
-  width: 100%;
-}
-
-.router-link-active {
-  
-
-  text-decoration: none;
-}
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  /* color: #2c3e50; */
+  color: #2c3e50;
 }
 
 nav {
-  padding: 20px;
+  padding: 30px;
 }
 
 nav a {
   font-weight: bold;
-  color: #ffffff;
+  color: #2c3e50;
 }
 
 nav a.router-link-exact-active {
-  color: #f5f5f5;
+  color: #42b983;
 }
 </style>
