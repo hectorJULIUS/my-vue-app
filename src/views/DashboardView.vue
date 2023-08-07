@@ -3,7 +3,7 @@
       <v-app-bar title="CountyWide PropertyManagement"></v-app-bar>
 
       <v-navigation-drawer permanent>
-          <v-list-item prepend-avatar="https://randomuser.me/api/portraits/men/10.jpg" title="John Man"></v-list-item>
+          <v-list-item prepend-avatar="#" title="#"></v-list-item>
 
           <v-divider></v-divider>
 

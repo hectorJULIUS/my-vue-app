@@ -1,21 +1,28 @@
 <template>
-  <v-toolbar >
-    <v-btn to="/">Home</v-btn>
-    <v-btn to="/about">About</v-btn>
-    <v-btn to="/signup">Signup</v-btn>
-    <v-btn to="/login">Login</v-btn>
+  <div>
+    <v-toolbar>
+      <v-btn to="/">Home</v-btn>
+      <v-btn to="/about">About</v-btn>
+      <v-btn to="/signup">Signup</v-btn>
+      <v-btn to="/login">Login</v-btn>
+    </v-toolbar>
 
-  </v-toolbar>
-  {{ store.state.isLoggedIn }}
-  <router-view/>
+    <!-- The isLoggedIn value will display whether the user is logged in or not -->
+    {{ store.state.isLoggedIn }}
+
+    <!-- The router-view will display the components based on the route -->
+    <router-view />
+
+    <!-- The Home component will be displayed below the router-view -->
+    <Home />
+  </div>
 </template>
 
 <script setup>
 import { useStore } from 'vuex';
 
-const store = useStore()
 
-// store.commit('setIsLoggedIn')
+const store = useStore();
 </script>
 
 <style>

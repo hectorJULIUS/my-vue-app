@@ -1,6 +1,7 @@
 <template>
     <v-container class="profile">
-      <v-card>
+      <!-- Profile Card -->
+      <v-card class="pa-4 mb-4">
         <v-row align="center">
           <v-col cols="12" sm="6" md="4">
             <v-file-input
@@ -12,20 +13,22 @@
           </v-col>
           <v-col cols="12" sm="6" md="8" class="text-center">
             <img class="profile-picture" :src="formattedImageUrl" alt="Profile Picture" />
-            <h1>{{ fullName }}</h1>
-            <p>{{ jobTitle }}</p>
+            <h1 class="mb-2">{{ fullName }}</h1>
+            <p class="subtitle">{{ jobTitle }}</p>
           </v-col>
         </v-row>
       </v-card>
   
-      <v-card>
+      <!-- About Me Card -->
+      <v-card class="pa-4 mb-4">
         <v-card-title>About Me</v-card-title>
         <v-card-text>
-          <p>{{ aboutMe }}</p>
+          <p class="text--primary">{{ aboutMe }}</p>
         </v-card-text>
       </v-card>
   
-      <v-card>
+      <!-- Work Experience Card -->
+      <v-card class="pa-4 mb-4">
         <v-card-title>Work Experience</v-card-title>
         <v-card-text>
           <v-list>
@@ -43,12 +46,67 @@
         </v-card-text>
       </v-card>
   
-      <v-card class="profile-footer">
-        <v-btn @click="updateProfile" :disabled="uploading || !file">Save Changes</v-btn>
-        <div v-if="uploading">Uploading...</div>
+      <!-- Save Changes Button -->
+      <v-card class="profile-footer pa-4">
+        <v-btn color="primary" @click="updateProfile" :disabled="uploading || !file">
+          <template v-if="uploading">
+            <span class="mr-1">Uploading...</span>
+            <v-icon>mdi-loading</v-icon>
+          </template>
+          <template v-else>
+            Save Changes
+            <v-icon right>mdi-content-save</v-icon>
+          </template>
+        </v-btn>
       </v-card>
     </v-container>
   </template>
+  
+  <style>
+  /* Add any custom styles here */
+  
+  /* Center the profile picture */
+  .profile-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Style the main heading */
+  h1 {
+    font-size: 28px;
+    color: #333;
+  }
+  
+  /* Style the subtitle */
+  .subtitle {
+    color: #666;
+  }
+  
+  /* Add padding and margin to the cards */
+  .v-card {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Add primary text color to the About Me section */
+  .text--primary {
+    color: #101010;
+  }
+  
+  /* Style the Save Changes button */
+  .v-btn {
+    font-weight: bold;
+  }
+  
+  /* Add margin to the Save Changes button icon */
+  .v-btn i {
+    margin-left: 8px;
+  }
+  </style>
+  
   
   <script setup>
   import { ref, computed, onMounted } from 'vue';

@@ -1,6 +1,65 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse rerum aspernatur hic eaque veniam provident ullam explicabo optio laboriosam, facilis sint nostrum rem. Facere blanditiis reprehenderit voluptatem maiores quam, nesciunt porro quae voluptates magni deleniti officia sit unde nemo delectus recusandae accusantium illum alias laudantium. Voluptas repudiandae ipsa eaque vel debitis cumque dignissimos sequi placeat vero nesciunt voluptate omnis, tempora voluptates totam soluta eos commodi atque incidunt earum nostrum magni fuga obcaecati quo maiores. Suscipit reiciendis iure molestias impedit dolorum! Qui reprehenderit fugiat saepe incidunt rerum ipsam eligendi quaerat, perspiciatis ducimus quod amet sed delectus dicta odio impedit eos molestias facilis ratione magnam repellat nihil beatae. Explicabo asperiores blanditiis voluptatem voluptates aliquam quibusdam facilis quaerat dignissimos libero? Dicta doloribus impedit ea aut laborum. Commodi obcaecati quidem provident at perferendis nesciunt. Aliquid, totam. Architecto nihil deserunt cupiditate! Aliquid excepturi culpa aperiam quaerat. Saepe, assumenda? Iste nobis dolor, tempore ratione sapiente sint ut, beatae aut consequuntur, qui saepe. Ullam in est laborum nesciunt molestiae officia perferendis? Minus sequi dolorum doloremque voluptatum pariatur quod officia, cupiditate molestias excepturi natus itaque delectus nobis temporibus totam eos dolorem. Enim corrupti consequatur harum corporis doloremque recusandae ea maiores, veritatis minus sequi, fuga soluta alias reprehenderit nulla deserunt eligendi odio, id nihil delectus quas eveniet ad voluptas reiciendis. Sint eos repudiandae explicabo maiores modi, veritatis provident! Enim qui asperiores distinctio expedita autem minus accusamus est quae facere! Ut recusandae, ex dolore aliquam optio nisi maiores? A totam, est rerum, velit asperiores at nulla provident consequatur inventore recusandae fugit minus ea voluptas tempora ab aspernatur dolor. Laborum blanditiis obcaecati illum iure esse adipisci quos assumenda expedita! Quae eveniet ad ipsa provident maxime molestias voluptate incidunt recusandae, consequatur aliquam, tempora reiciendis nostrum dolor. Asperiores minima dolorem placeat ad saepe quia amet quo nobis natus iste, error sint ex molestiae.</p>
-  </div>
+  <v-container>
+    <v-row>
+      <!-- Text Content -->
+      <v-col class="text" cols="12" md="6">
+        <p class="section-title">With us, your property is in safe hands</p>
+        <p class="section-description">We bring transparency, accountability, and exceptional customer experience in property management by leveraging technology.</p>
+        <ul>
+          <li class="section-features">Fully digitized financial management</li>
+          <li class="section-features">24/7 online report access</li>
+          <li class="section-features">Prompt disbursements of rent by 10th</li>
+          <li class="section-features">Affordable management fee</li>
+        </ul>
+      </v-col>
+
+      <!-- Image -->
+      <v-col class="img" cols="12" md="6">
+        <v-img :src="imageUrl" aspect-ratio="2/3" class="fill-height"></v-img>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      imageUrl: require("@/assets/img/property-image.png"), // Replace with the actual image URL
+    };
+  },
+};
+</script>
+
+<style>
+.text {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.section-description {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.section-features {
+  font-size: 14px;
+  margin-bottom: 5px;
+  list-style: none;
+}
+.img{
+height: 80vh;
+}
+.text{
+  
+  margin-top: 80px;
+}
+</style>
