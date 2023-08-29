@@ -1,5 +1,12 @@
 <template>
-  <v-card-text>
+  <v-row>
+    <v-col cols="12" md="4">
+      <img src="" alt="">
+
+    </v-col>
+
+    <v-col cols="12" md="8">
+      <v-card-text>
    <h1 style="margin-bottom: 50px;">Log In</h1>
     <div class="login-container">
            <form action="" @submit.prevent="login">
@@ -18,7 +25,10 @@
       </form>
     </div>
   </v-card-text>
+    </v-col>
+  </v-row>
   <Footer />
+
 </template>
 
 <script setup>
@@ -57,7 +67,7 @@ const login = async ()=> {
  /* Style the form container */
 .login-form {
   width: 300px;
-  margin: 0 auto;
+
 }
 
 /* Style the form input fields */
@@ -66,7 +76,7 @@ const login = async ()=> {
 }
 
 .form-input input {
-  width: 20%;
+  width: 40%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -77,7 +87,7 @@ const login = async ()=> {
 
 /* Style the submit button */
 .form-input button {
-  width: 20%;
+  width: 40%;
   padding: 10px;
   font-size: 16px;
   color: #fff;
@@ -85,6 +95,10 @@ const login = async ()=> {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+.login-container{
+  width: 100%;
+  margin-bottom: 0%;
 }
 
 .form-input button:hover {

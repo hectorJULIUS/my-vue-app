@@ -1,6 +1,11 @@
 <template>
  
-          <v-card-text>
+          <v-row>
+            <v-col cols="12" md="4" >
+
+            </v-col>
+            <v-col cols="12" md="8" >
+              <v-card-text>
             <h1>Sign Up</h1>
             <!-- Signup Form -->
             <div class="signup-form">
@@ -23,11 +28,10 @@
               </form>
             </div>
           </v-card-text>
+            </v-col>
+          </v-row>
 
           <Footer/>
-          
-   
-
   </template>
   
   
@@ -74,7 +78,7 @@
 }
 
 .signup-card {
-  width: 80%;
+  width: 100%;
   max-width: 400px;
   margin-top: 50px;
 }
@@ -84,6 +88,7 @@
 }
 
 .signup-form {
+  width: 100%;
   margin-top: 20px;
 }
  /* Style the form container */

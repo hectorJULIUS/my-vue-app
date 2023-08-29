@@ -1,10 +1,8 @@
 <template>
     <v-container >
       <v-row>
-        
-          <v-col cols="6" class="image-section">
-            <h1 style="font-size: 100px;">Contact <br> Us</h1>
-        <img src="" alt="">
+        <v-col cols="12" md="6" class="image-section">
+        <img src="../assets/Contact.png" alt="" class="contact-image">
       </v-col>
           
       
@@ -104,9 +102,16 @@
   }
   .contact-image {
     width: 100%;
-    height: auto;
+    height: 90%;
     max-width: 400px;
     margin: auto;
+  }
+
+   /* Media Query for Tablets and Smaller Screens */
+   @media screen and (max-width: 768px) {
+    .image-section {
+      margin-bottom: 20px;
+    }
   }
   </style>
   
