@@ -1,30 +1,45 @@
 <template>
-    <div class="signup-form">
-  <form action="" @submit.prevent="signup">
-    <div class="form-input">
-      <input type="text" placeholder="Enter username" v-model="user.username">
-    </div>
+ 
+          <v-card-text>
+            <h1>Sign Up</h1>
+            <!-- Signup Form -->
+            <div class="signup-form">
+              <form action="" @submit.prevent="signup">
+                <div class="form-input">
+                  <input type="text" placeholder="Enter username" v-model="user.username">
+                </div>
 
-    <div class="form-input">
-      <input type="email" placeholder="Enter email" v-model="user.email">
-    </div>
+                <div class="form-input">
+                  <input type="email" placeholder="Enter email" v-model="user.email">
+                </div>
 
-    <div class="form-input">
-      <input type="password" placeholder="Enter password" v-model="user.password">
-    </div>
+                <div class="form-input">
+                  <input type="password" placeholder="Enter password" v-model="user.password">
+                </div>
 
-    <div class="form-input">
-      <button type="submit">Signup</button>
-    </div>
-    </form>
-    </div>
+                <div class="form-input">
+                  <button type="submit">Signup</button>
+                </div>
+              </form>
+            </div>
+          </v-card-text>
+
+          <Footer/>
+          
+   
+
   </template>
   
+  
   <script>
+  import Footer from '../components/FooterDown.vue'
   import { ref } from 'vue';
   import axios from 'axios'
   
   export default {
+    components: {
+      Footer
+    },
     setup() {
       
       const user = ref({
@@ -45,12 +60,32 @@
         }
       }
   
-      return { signup, user };
+      return { signup, user, Footer };
     }
   }
   </script>
   
   <style scoped>
+  .card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.signup-card {
+  width: 80%;
+  max-width: 400px;
+  margin-top: 50px;
+}
+.signup-heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.signup-form {
+  margin-top: 20px;
+}
  /* Style the form container */
 .signup-form {
   width: 300px;

@@ -1,31 +1,59 @@
 <template>
   <div>
     <v-toolbar>
-      <v-btn to="/">Home</v-btn>
-      <v-btn to="/about">About</v-btn>
-      <v-btn to="/signup">Signup</v-btn>
-      <v-btn to="/login">Login</v-btn>
+      <RouterLink to="/" class="logo-button">
+                <img  src="../src/your-logo-url.png" alt="Logo" class="logo">
+      </RouterLink>
+      <v-toolbar-title >County Wide Property Management </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <!-- <v-btn to="/">Home</v-btn> -->
+        <!-- <v-btn to="/about">About</v-btn> -->
+        <v-btn to="/signup">Get Started</v-btn>
+        <v-btn to="/login">Login</v-btn>
+        <v-btn style=" color: #ffffff; background-color: #000000;border-radius: 20px; margin-right: 16px;" class="contact" to="/contact">Contact Us <v-icon right>mdi-arrow-right</v-icon> </v-btn>
     </v-toolbar>
 
     <!-- The isLoggedIn value will display whether the user is logged in or not -->
-    {{ store.state.isLoggedIn }}
+    <!-- {{ store.state.isLoggedIn }} -->
 
     <!-- The router-view will display the components based on the route -->
     <router-view />
 
     <!-- The Home component will be displayed below the router-view -->
     <Home />
+
+    <!-- Include the Footer component on every page -->
   </div>
 </template>
 
 <script setup>
+import { RouterView } from 'vue-router';
+</script>
+
+<!-- <script setup>
 import { useStore } from 'vuex';
 
 
 const store = useStore();
-</script>
+</script> -->
+
+
 
 <style>
+.logo-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.logo {
+  height: 50px;
+  width: 100px;
+}
+</style>
+
+<style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -45,5 +73,13 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+</style>
+<style>
+.contact {
+  color: #ffffff; 
+  background-color: #000000;
+  border-radius: 20px; 
+  margin-right: 16px; 
 }
 </style>

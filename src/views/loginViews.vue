@@ -1,6 +1,7 @@
 <template>
+  <v-card-text>
+   <h1 style="margin-bottom: 50px;">Log In</h1>
     <div class="login-container">
-        <h2>Login</h2>
            <form action="" @submit.prevent="login">
             <div class="form-input">
               <input type="text" placeholder="Enter username" v-model="user.username">
@@ -9,12 +10,15 @@
         <div class="form-input">
           <input type="password" placeholder="Enter password" v-model="user.password">
         </div>
+        
 
         <div class="form-input">
           <button type="submit">Login</button>
         </div>
       </form>
     </div>
+  </v-card-text>
+  <Footer />
 </template>
 
 <script setup>
@@ -22,6 +26,7 @@ import axios from 'axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
+import Footer from '../components/FooterDown.vue'
 
 const user = ref({
     username: '',

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
+import ContactView from '../views/ContactView.vue';
 import AboutView from '../views/AboutView.vue';
 import SignupView from '../views/signupViews.vue';
 import LoginView from '../views/loginViews.vue';
@@ -7,6 +8,7 @@ import DashboardView from '../views/DashboardView.vue';
 import ProfileView from '../views/ProfileView.vue';
 import DashboardHomeView from '../views/DashboardHomeView.vue';
 import store from '../store/index';
+
 
 
 const routes = [
@@ -19,6 +21,12 @@ const routes = [
     path: '/about',
     name: 'about',
     component: AboutView,
+    meta: { requiresAuth: false }
+  },
+  {
+    path: '/contact',
+    name: 'contact',
+    component: ContactView,
     meta: { requiresAuth: false }
   },
   {
