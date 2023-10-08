@@ -3,7 +3,7 @@
       <v-app-bar title="CountyWide PropertyManagement"></v-app-bar>
 
       <v-navigation-drawer permanent>
-          <v-list-item prepend-avatar="#" title="#"></v-list-item>
+        <img  src="../your-logo-url.png" alt="Logo" class="logo">
 
           <v-divider></v-divider>
 

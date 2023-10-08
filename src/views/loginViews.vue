@@ -1,34 +1,31 @@
 <template>
-  <v-row>
-    <v-col cols="12" md="4">
-      <img src="" alt="">
+  <v-card-text>
+    <div>
+      <img src="../your-logo-url.png" alt="" class="logo">
+    </div>
 
-    </v-col>
-
-    <v-col cols="12" md="8">
-      <v-card-text>
-   <h1 style="margin-bottom: 50px;">Log In</h1>
     <div class="login-container">
-           <form action="" @submit.prevent="login">
-            <div class="form-input">
-              <input type="text" placeholder="Enter username" v-model="user.username">
-            </div>
+      <form @submit.prevent="login">
+        <div class="form-input">
+          <input type="text" placeholder="Enter username" v-model="user.username">
+        </div>
 
         <div class="form-input">
           <input type="password" placeholder="Enter password" v-model="user.password">
         </div>
-        
 
         <div class="form-input">
           <button type="submit">Login</button>
         </div>
       </form>
+
+      <!-- Display login status message -->
+      <div class="login-status" v-if="loginMessage">
+        {{ loginMessage }}
+      </div>
     </div>
   </v-card-text>
-    </v-col>
-  </v-row>
   <Footer />
-
 </template>
 
 <script setup>
@@ -37,6 +34,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import Footer from '../components/FooterDown.vue'
+import Swal from 'sweetalert2';
 
 const user = ref({
     username: '',
@@ -44,24 +42,55 @@ const user = ref({
 })
 
 const router = useRouter();
-const store = useStore()
-store.commit('setIsLoggedIn')
-console.log(store.state.isLoggedIn);
+const store = useStore();
 
-const login = async ()=> {
-    try {
-        const response = await axios.post('http://127.0.0.1:8000/api/login', user.value);
-        console.log(response.data.token);
-        const authToken = response.data.token;
-        localStorage.setItem('auth-token', authToken)
-        store.commit('setIsLoggedIn')
-        router.push({name: 'dashboard'});
-        console.log(response);
-    } catch (error) {
-        console.log(error);
+const loginMessage = ref('');
+
+const login = async () => {
+  loginMessage.value = ''; // Initialize the message as empty
+
+  try {
+    const response = await axios.post('http://127.0.0.1:8000/api/login', user.value);
+    console.log(response.data.token);
+    const authToken = response.data.token;
+    localStorage.setItem('auth-token', authToken);
+    store.commit('setIsLoggedIn');
+
+    // Display a success pop-up message
+    await Swal.fire({
+      title: 'Login successful',
+      icon: 'success',
+      timer: 2000, // Auto close the pop-up after 2 seconds (optional)
+    });
+
+    router.push({ name: 'dashboard' });
+  } catch (error) {
+    console.log(error);
+
+    // Check the error condition before displaying the error pop-up
+    if (error.response && error.response.status === 401) {
+      // Display an error pop-up message for wrong credentials
+      await Swal.fire({
+        title: 'Wrong credentials',
+        text: 'Please check your username and password and try again.',
+        icon: 'error',
+      });
+
+      loginMessage.value = 'Wrong credentials'; // Update the message after displaying the error
+    } else {
+      // Handle other types of errors (e.g., network issues)
+      console.error('An unexpected error occurred:', error);
+
+      // You can choose to display a different error message or take other actions here
     }
-}
+  }
+};
+
+// Call the login function to initiate the login process
+login();
+
 </script>
+
   
   <style scoped>
  /* Style the form container */
@@ -76,7 +105,7 @@ const login = async ()=> {
 }
 
 .form-input input {
-  width: 40%;
+  width: 20%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -87,7 +116,7 @@ const login = async ()=> {
 
 /* Style the submit button */
 .form-input button {
-  width: 40%;
+  width: 20%;
   padding: 10px;
   font-size: 16px;
   color: #fff;
@@ -96,10 +125,7 @@ const login = async ()=> {
   border-radius: 4px;
   cursor: pointer;
 }
-.login-container{
-  width: 100%;
-  margin-bottom: 0%;
-}
+
 
 .form-input button:hover {
   background-color: #555; /* Slightly lighter gray on hover */
@@ -116,6 +142,16 @@ const login = async ()=> {
 .form-input input:focus {
   outline: none;
 }
+.logo{
+  margin-top: 50px;
+  height: 10vh;
+  width: 20%;
+  margin-bottom: 40px;
+}
+.login-container{
+  margin-bottom: 70px;
+}
+
 
   </style>
   

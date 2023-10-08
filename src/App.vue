@@ -1,18 +1,17 @@
 <template>
   <div>
-    <v-toolbar>
+      <v-toolbar>
       <RouterLink to="/" class="logo-button">
                 <img  src="../src/your-logo-url.png" alt="Logo" class="logo">
       </RouterLink>
-      <v-toolbar-title >County Wide Property Management </v-toolbar-title>
-        <v-spacer></v-spacer>
-        <!-- <v-btn to="/">Home</v-btn> -->
-        <!-- <v-btn to="/about">About</v-btn> -->
+      <v-toolbar-title  ><b>County Wide Property Management</b>  </v-toolbar-title>
+      <v-btn to="/services">Services</v-btn>
         <v-btn to="/signup">Get Started</v-btn>
         <v-btn to="/login">Login</v-btn>
-        <v-btn style=" color: #ffffff; background-color: #000000;border-radius: 20px; margin-right: 16px;" class="contact" to="/contact">Contact Us <v-icon right>mdi-arrow-right</v-icon> </v-btn>
+        <v-btn  style=" color: #ffffff; background-color: #000000;border-radius: 20px; margin-right: 16px;" class="contact" to="/contact">Contact Us <v-icon right>mdi-arrow-right</v-icon>
+        </v-btn>
+        
     </v-toolbar>
-
     <!-- The isLoggedIn value will display whether the user is logged in or not -->
     <!-- {{ store.state.isLoggedIn }} -->
 
@@ -29,6 +28,7 @@
 <script setup>
 import { RouterView } from 'vue-router';
 </script>
+
 
 <!-- <script setup>
 import { useStore } from 'vuex';
@@ -47,8 +47,9 @@ const store = useStore();
 }
 
 .logo {
-  height: 50px;
-  width: 100px;
+  padding-left: 10px;
+  height: 70px;
+  width: 170px;
 }
 </style>
 

@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import ContactView from '../views/ContactView.vue';
 import AboutView from '../views/AboutView.vue';
 import SignupView from '../views/signupViews.vue';
+import ServicesViews  from '../views/ServicesViews.vue';
 import LoginView from '../views/loginViews.vue';
 import DashboardView from '../views/DashboardView.vue';
 import ProfileView from '../views/ProfileView.vue';
@@ -16,6 +17,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/services',
+    name: 'services',
+    component: ServicesViews
   },
   {
     path: '/about',

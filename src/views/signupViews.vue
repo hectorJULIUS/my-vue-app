@@ -1,14 +1,12 @@
 <template>
- 
-          <v-row>
-            <v-col cols="12" md="4" >
 
-            </v-col>
-            <v-col cols="12" md="8" >
               <v-card-text>
-            <h1>Sign Up</h1>
             <!-- Signup Form -->
+            <div>
+              <img src="../your-logo-url.png" alt="" class="logo">
+            </div>
             <div class="signup-form">
+              
               <form action="" @submit.prevent="signup">
                 <div class="form-input">
                   <input type="text" placeholder="Enter username" v-model="user.username">
@@ -28,8 +26,7 @@
               </form>
             </div>
           </v-card-text>
-            </v-col>
-          </v-row>
+           
 
           <Footer/>
   </template>
@@ -39,6 +36,8 @@
   import Footer from '../components/FooterDown.vue'
   import { ref } from 'vue';
   import axios from 'axios'
+  import { useRouter } from 'vue-router';
+  import Swal from 'sweetalert2';
   
   export default {
     components: {
@@ -52,17 +51,53 @@
           password: ''
       })
       console.log(user.value)
+      const router = useRouter();
+
+      // const SignUpMessage = ref('');
   
   
-      const signup = async() => {
-          console.log(user);
-        try {
-          const response = await axios.post('http://127.0.0.1:8000/api/signup', user.value);
-          console.log(response);
-        } catch (error) {
-          console.log(error);
-        }
-      }
+      
+
+      const signup = async () => {
+  console.log(user);
+  try {
+    const response = await axios.post('http://127.0.0.1:8000/api/signup', user.value);
+    console.log(response);
+
+    // Display a success pop-up message
+    await Swal.fire({
+      title: 'Sign-up successful',
+      icon: 'success',
+      timer: 2000, // Auto close the pop-up after 2 seconds (optional)
+    });
+
+    // Redirect to the login page
+    router.push({ name: 'login' });
+  } catch (error) {
+    console.log(error);
+
+    // Check the error condition before displaying the error pop-up
+    if (error.response && error.response.status === 400) {
+      // Display an error pop-up message for a bad request or other specific error condition
+      await Swal.fire({
+        title: 'Failed to sign up',
+        text: 'Please check your input and try again.',
+        icon: 'error',
+      });
+    } else {
+      // Handle other types of errors (e.g., network issues)
+      console.error('An unexpected error occurred:', error);
+
+      // You can choose to display a different error message or take other actions here
+    }
+  }
+};
+
+// Call the signup function to initiate the signup process
+signup();
+
+
+
   
       return { signup, user, Footer };
     }
@@ -138,6 +173,11 @@
 /* Optional: Remove outline on input focus for a cleaner look */
 .form-input input:focus {
   outline: none;
+}
+.logo{
+  margin-top: 50px;
+  height: 10vh;
+  width: 20%;
 }
 
   </style>
