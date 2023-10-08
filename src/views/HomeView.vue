@@ -208,13 +208,13 @@
     
     <div class="testimonials">
       <div class="inner">
-        <h1>Testimonials</h1>
+        <h1 class="subheading-text">Testimonials</h1>
         <div class="border"></div>
 
         <div class="row">
           <div class="col">
             <div class="testimonial">
-              <img src="../assets/img/" alt="">
+              <img src="" alt="">
               <div class="name">Hector Julius</div>
               <div class="stars">
                 <i class="fas fa-star"></i>
