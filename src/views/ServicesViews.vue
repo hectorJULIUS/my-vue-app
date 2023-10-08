@@ -34,7 +34,7 @@
         <div class="card">
        <h2>What Can Our Home Improvement Professionals Do For You?</h2>
        <div>
-         <v-text-field label="Enter ZIP/Postal Code" outlined clearable></v-text-field>
+         <v-text-field label="Enter a Service/Postal Code" outlined clearable></v-text-field>
        </div>
        <button @click="submit">SUBMIT</button>
      </div>
@@ -160,10 +160,10 @@ v-text-field {
 }
 
 button {
-  display: block;
+  
   width: 100%;
   padding: 10px;
-  background-color: #0b0b0b; /* Change to your desired button color */
+  background-color: #0b0b0b;
   color: #ffffff;
   border: none;
   cursor: pointer;
