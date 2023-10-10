@@ -2,8 +2,9 @@
   
   
   <v-container>
+    <h1 class="subheading-text"> About Us</h1>
+    <div class="border"></div>
     <v-row>
-      <!-- Text Content -->
       <v-col class="text" cols="12" md="6">
         <p class="section-title">With us, your property is in safe hands</p>
         <p class="section-description">We bring transparency, accountability, and exceptional customer experience in property management by leveraging technology.</p>
@@ -36,17 +37,19 @@ export default {
 
 <style>
 .pressed-card {
-  background-color: #3498db; /* Change to your desired background color */
-  transform: translateY(2px); /* Push the card down slightly */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-  transition: transform 0.2s, box-shadow 0.2s; /* Add a smooth transition */
+ 
+  transform: translateY(2px); 
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
 }
 
-/* Hover effect (optional) */
+
 .pressed-card:hover {
+  transform: scale(1);
+  background-color: rgba(0, 0, 0, 0.201);
+  color: aliceblue;
   transform: translateY(0);
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-}
+  box-shadow: 0 8px 6px rgb(0, 0, 0);}
 .text {
   padding: 20px;
   background-color: #f5f5f5;

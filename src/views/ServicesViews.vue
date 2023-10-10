@@ -3,15 +3,11 @@
     <v-container fluid>
         <v-row>
         <v-col cols="4">
-        <v-card class="elevation-10">
+        <v-card class="control" >
             <v-card-title class="subtitle">Services</v-card-title>
             <v-list dense>
             <v-list-item
-                v-for="(service, index) in services"
-                :key="index"
-                @click="selectService(index)"
-                :class="{ 'service-selected': index === selectedServiceIndex }"
-            >
+                v-for="(service, index) in services" :key="index" @click="selectService(index)" :class="{ 'service-selected': index === selectedServiceIndex }">
                 <v-list-item-content>
                 <v-list-item-title class="text-h6 text-left">{{ service.name }}</v-list-item-title>
                 </v-list-item-content>
@@ -20,23 +16,24 @@
         </v-card>
         </v-col>
 
-        <v-col cols="8">
-        <v-card class="elevation-10" v-if="selectedServiceIndex !== null">
+        <v-col class="disc" cols="8">
+
+        <v-card class="elevation" v-if="selectedServiceIndex !== null">
             <v-card-title class="subtitle">{{ services[selectedServiceIndex].name }}</v-card-title>
             <v-card-text>{{ services[selectedServiceIndex].description }}</v-card-text>
         </v-card>
-        <v-card class="elevation-10" v-else>
+        <v-card class="elevation" style="background-color: rgba(255, 255, 255, 0.808);" v-else>
             <v-card-title class="subtitle">Select a Service</v-card-title>
             <v-card-text>Please select a service from the list to see details.</v-card-text>
         </v-card>
 
 
-        <div class="card">
+        <div class="serv-card">
        <h2>What Can Our Home Improvement Professionals Do For You?</h2>
        <div>
          <v-text-field label="Enter a Service/Postal Code" outlined clearable></v-text-field>
        </div>
-       <button @click="submit">SUBMIT</button>
+       <button class="btn" @click="submit">SUBMIT</button>
      </div>
 
         </v-col>
@@ -128,8 +125,12 @@
   font-weight: bold;
 }
 
-.elevation-10 {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+/* .elevation {
+  
+    box-shadow: 0 8px 6px rgb(0, 0, 0);
+} */
+.disc{
+    background-image: url('../assets/img/egor-myznik-x4llin0ehYI-unsplash.jpg');
 }
 
 .service-selected {
@@ -140,13 +141,14 @@
 .text-left {
   text-align: left; 
 }
-.card {
-  max-width: 400px; /* Adjust the max-width to your desired size */
+.serv-card {
+  max-width: 500px; 
   margin: 0 auto;
   padding: 20px;
   margin-top: 40px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  box-shadow: 0 8px 6px rgb(0, 0, 0);
+  background-color: #ffffff3f;
+  border-radius: 8px;
 }
 
 h2 {
@@ -158,8 +160,12 @@ v-text-field {
   width: 100%;
   margin-bottom: 20px;
 }
+.control{
+    border: 0;
+    background-color: #040404;
+}
 
-button {
+.btn {
   
   width: 100%;
   padding: 10px;
@@ -170,7 +176,7 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
+.btn:hover {
   background-color: #040404; 
   color: #ffffff;
 }

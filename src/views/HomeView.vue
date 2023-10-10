@@ -28,14 +28,9 @@
 
     <v-container style="margin-top: 50px;">
     <v-row>
-      <!-- Image Section -->
       <v-col cols="12" md="6">
         <img src="../build.jpg"   alt=""  class="build">
       </v-col>
-
-      
-
-      <!-- Paragraph Section -->
       <v-col cols="12" md="6">
         <div class="responsive-container">
           <p class="heading-text">THIS IS</p>
@@ -49,77 +44,106 @@
     </v-row>
   </v-container>
 
-    <v-container  class="service" >
-    <h1 class="subheading-text" style="margin-bottom: 50px;" >Here Is What we do:</h1>
-    
-    <v-row>
-      <v-col  cols="12" md="3">
-        <v-card style="background-color: black; color: rgb(255, 255, 255);" to="/services" class="pressed-card"> 
+  <h1  class="subheading-text">What We offer </h1>
+  <div class="border"></div>
+    <v-container  class="service-card" >
+      <v-row style="margin-top:50px;margin-bottom:50px;">
+      <v-col  cols="12" md="3"  >
+        <v-card style="background-color: rgba(260, 260, 260, 0.8);">
           <v-card-text>
-            <div class="text-center">
-              <v-list-item class="rounded-circle">
+            <div >
+              <v-list-item >
                 <v-list-item-icon>
                   <v-icon style="height: 50px;"> mdi-48px mdi-wrench</v-icon>
                 </v-list-item-icon>
+                <h1>Repair</h1>
+                <div class="border"></div>
+                <p>
+                  Discover Reliable Repair Services: At County Wide Property Management, we are your trusted partner for top-notch repair services. With skilled professionals and years of experience, we offer a wide range of expertise.
+                </p>
               </v-list-item>
+              <router-link class="btn" to="/services">
+                <button>Request</button>
+              </router-link>
             </div>
           </v-card-text>
-          <h1>Repair</h1>
+          
         </v-card>
       </v-col>
 
 
       <v-col cols="12" md="3">
-        <v-card to="/services" class="pressed-card" >
+        <v-card style="background-color: rgba(260, 260, 260, 0.8);">
           <v-card-text>
-            <div class="text-center">
-              <v-list-item class="rounded-circle"> 
+            <div >
+              <v-list-item> 
                 <v-list-item-icon>
                   <v-icon style="height: 50px;"> mdi-48px
                     mdi-pipe-disconnected
                   </v-icon>
+                  <h1>Plumbing</h1>
+                  <div class="border"></div>
                 </v-list-item-icon>
+                <p>
+                  Discover Reliable Repair Services: At County Wide Property Management, we are your trusted partner for top-notch repair services. With skilled professionals and years of experience, we offer a wide range of expertise.
+                </p>
               </v-list-item>
-              
+              <router-link class="btn" to="/services">
+                <button>Request</button>
+              </router-link>
             </div>
           </v-card-text>
-          <h1>Plumbing</h1>
+          
         </v-card>
       </v-col>
 
       <v-col cols="12" md="3">
-        <v-card style="background-color: black; color: rgb(255, 255, 255);" to="/services" class="pressed-card" >
+        <v-card style="background-color: rgba(260, 260, 260, 0.8);">
           <v-card-text>
             <div class="text-center">
-              <v-list-item class="rounded-circle"> 
+              <v-list-item > 
                 <v-list-item-icon>
                   <v-icon style="height: 50px;"> mdi-48px
                     mdi-format-color-fill
                   </v-icon>
+                  <h1>Painting</h1>
+                  <div class="border"></div>
                 </v-list-item-icon>
+                <p>
+                  Discover Reliable Repair Services: At County Wide Property Management, we are your trusted partner for top-notch repair services. With skilled professionals and years of experience, we offer a wide range of expertise.
+                </p>
               </v-list-item>
-             
+              <router-link class="btn" to="/services">
+                <button>Request</button>
+              </router-link>
             </div>
           </v-card-text>
-          <h1>Painting</h1>
+          
         </v-card>
       </v-col>
 
       <v-col cols="12" md="3">
-        <v-card to="/services" class="pressed-card" >
+        <v-card style="background-color: rgba(260, 260, 260, 0.8);" >
           <v-card-text>
-            <div class="text-center">
-              <v-list-item class="rounded-circle"> 
+            <div >
+              <v-list-item > 
                 <v-list-item-icon style="height: 50px;width:50px ;">
                   <v-icon style="height: 50px;"> mdi-48px
                     mdi-power
                   </v-icon>
+                  <h1>Electrical Services</h1>
+                  <div class="border"></div>
                 </v-list-item-icon>
+                <p>
+                  Discover Reliable Repair Services: At County Wide Property Management, we are your trusted partner for top-notch repair services. With skilled professionals and years of experience, we offer a wide range of expertise.
+                </p>
               </v-list-item>
-              
+              <router-link class="btn" to="/services">
+                <button>Request</button>
+              </router-link>
             </div>
           </v-card-text>
-          <h1>Electrical Services</h1>
+          
         </v-card>
       </v-col>
 
@@ -127,79 +151,109 @@
 
     <v-row >
       <v-col cols="12" md="3">
-        <v-card to="/services" class="pressed-card" >
+        <v-card style="background-color: rgba(260, 260, 260, 0.8);" >
           <v-card-text>
-            <div class="text-center">
-              <v-list-item class="rounded-circle"> 
+            <div >
+              <v-list-item > 
                 <v-list-item-icon>
                   <v-icon style="height: 50px;"> mdi-48px
                     mdi-home-variant
                   </v-icon>
+                  <h1>Window and Door Services</h1>
+                  <div class="border"></div>
                 </v-list-item-icon>
+                <p>
+                  Discover Reliable Repair Services: At County Wide Property Management, we are your trusted partner for top-notch repair services. With skilled professionals and years of experience, we offer a wide range of expertise.
+                </p>
               </v-list-item>
-              
+              <router-link class="btn" to="/services">
+                <button>Request</button>
+              </router-link>
             </div>
           </v-card-text>
-          <h1>Window and Door Services</h1>
+          
         </v-card>
       </v-col>
 
       <v-col cols="12" md="3">
-        <v-card style="background-color: black; color: rgb(255, 255, 255);" to="/services" class="pressed-card" >
+        <v-card style="background-color: rgba(260, 260, 260, 0.8);" >
           <v-card-text>
-            <div class="text-center">
-              <v-list-item class="rounded-circle"> 
+            <div >
+              <v-list-item > 
                 <v-list-item-icon>
                   <v-icon style="height: 50px;"> mdi-48px
                     mdi-led-on
                   </v-icon>
+                  <h1>Holiday Lighting Installation</h1>
+                  <div class="border"></div>
                 </v-list-item-icon>
+                <p>
+                  Discover Reliable Repair Services: At County Wide Property Management, we are your trusted partner for top-notch repair services. With skilled professionals and years of experience, we offer a wide range of expertise.
+                </p>
               </v-list-item>
-              
+              <router-link class="btn" to="/services">
+                <button>Request</button>
+              </router-link>
             </div>
           </v-card-text>
-          <h1>Holiday Lighting Installation</h1>
+          
         </v-card>
       </v-col>
 
       <v-col cols="12" md="3">
-        <v-card to="/services" class="pressed-card" >
+        <v-card style="background-color: rgba(260, 260, 260, 0.8);"  >
           <v-card-text>
-            <div class="text-center">
-              <v-list-item class="rounded-circle"> 
+            <div >
+              <v-list-item > 
                 <v-list-item-icon>
                   <v-icon style="height: 50px;"> mdi-48px
                     mdi-rowing
                     
                   </v-icon>
+                  <h1>Concrete Pressure Washing</h1>
+                  <div class="border"></div>
                 </v-list-item-icon>
+                <p>
+                  Discover Reliable Repair Services: At County Wide Property Management, we are your trusted partner for top-notch repair services. With skilled professionals and years of experience, we offer a wide range of expertise.
+                </p>
               </v-list-item>
-             
+              <router-link class="btn" to="/services">
+                <button>Request</button>
+              </router-link>
             </div>
           </v-card-text>
-          <h1>Concrete and Pressure Washing</h1>
+         
         </v-card>
       </v-col>
 
       <v-col cols="12" md="3">
-        <v-card style="background-color: black; color: rgb(255, 255, 255);" to="/services" class="pressed-card" >
+        <v-card style="background-color: rgba(260, 260, 260, 0.8);" >
           <v-card-text>
-            <div class="text-center">
-              <v-list-item class="rounded-circle"> 
+            <div >
+              <v-list-item > 
                 <v-list-item-icon>
                   <v-icon style="height: 50px;"> mdi-48px
                     mdi-blur
                   </v-icon>
+                  <h1>Floor Installation & Repair</h1>
+                  <div class="border"></div>
                 </v-list-item-icon>
+                <p>
+                  Discover Reliable Repair Services: At County Wide Property Management, we are your trusted partner for top-notch repair services. With skilled professionals and years of experience, we offer a wide range of expertise.
+                </p>
               </v-list-item>
               
+              <router-link  class="btn" to="/services">
+                <button>Request</button>
+              </router-link>
             </div>
           </v-card-text>
-          <h1>Floor Installation & Repair</h1>
+         
         </v-card>
       </v-col>
 
     </v-row>
+    
   </v-container>
 
     
@@ -214,7 +268,7 @@
         <div class="row">
           <div class="col">
             <div class="testimonial">
-              <img src="" alt="">
+              <img src="../assets/img/p1.png" alt="">
               <div class="name">Hector Julius</div>
               <div class="stars">
                 <i class="fas fa-star"></i>
@@ -232,7 +286,7 @@
 
           <div class="col">
             <div class="testimonial">
-              <img src="p2.png" alt="">
+              <img src="../assets/img/p2.png" alt="">
               <div class="name">Nicole Kenya</div>
               <div class="stars">
                 <i class="fas fa-star"></i>
@@ -250,7 +304,7 @@
 
           <div class="col">
             <div class="testimonial">
-              <img src="" alt="">
+              <img src="../assets/img/p3.png" alt="">
               <div class="name">Sofy Gatkoth</div>
               <div class="stars">
                 <i class="fas fa-star"></i>
@@ -268,12 +322,38 @@
         </div>
       </div>
     </div>
+
     </div>
-
-  
-  
-
   </div>
+
+
+  
+  
+
+    
+
+  <v-container fluid class="soon">
+      <div class="app-container">
+
+        <v-row>
+          <v-col cols="12" md="6" >
+            <img src="../your-logo-url.png" alt="" class="logo">
+            <p class="description-text">Get ready for an amazing experience, One tap order for a Service! <br>Our app is coming soon to your devices.</p>
+              <div class="platform-badges">
+                <img src="../assets/img/ad.png" alt="" class="contact-image">
+              </div>
+            </v-col>
+          <v-col cols="12" md="6" clas="hand">
+            <img src="../assets/img/app2.png" alt="" class="contact-image">
+          </v-col>
+          
+          </v-row>  
+
+      </div>
+    </v-container>
+
+
+
   <Footer/>
 
 </template>
@@ -298,6 +378,73 @@ setTimeout(() => {
 </script>
 
 <style>
+
+
+
+button{
+  margin-top:10px;
+  width: 80%;
+  background-color:black;
+  color:white;
+}
+.service-card{
+  background-image:url('../assets/img/serv.jpg');
+  background-size: cover;
+}
+
+.service-container{
+  height:400px;
+  
+  margin-bottom:60px;
+}
+
+.service {
+  
+  text-align: center;
+  padding: 40px 0;
+  height:100vh;
+}
+
+.subheading-text {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+
+.v-list-item-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 80px;
+  background-color: #007bff; 
+  color: #fff;
+  border-radius: 50%;
+}
+
+.v-card h1 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.soon{
+  
+  width:100%;
+  background-color: #f1f1f1;
+  padding: 40px 0;
+}
+.app-container {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  margin: 50px auto;
+  padding: 20px;
+  max-width: 80%;
+}
+.app-container:hover {
+  transform: scale(1.05);
+  
+}
 
 
 @keyframes zoomIn {
@@ -334,28 +481,22 @@ setTimeout(() => {
   }
 }
 
-.service{
-  /* background-image: url('../assets/img/slide3.jpg'); */
-  width: 100%;
-  margin-top: 30px;
-  margin-bottom: 50px;
-  
-}
+
 </style>
 
 
 <style>
-/* Ensure the carousel takes the full width of its container */
+
 .v-carousel {
   width: 100%;
 }
 
-/* Remove extra padding added by v-carousel-item */
+
 .v-carousel-item {
   padding: 0;
 }
 
-/* Ensure each carousel item's image fills the carousel container */
+
 .v-carousel-item img {
   width: 100%;
   height: 100%;
@@ -367,7 +508,7 @@ setTimeout(() => {
     max-width: 400px;
     margin: auto;
 }
-/* Define the responsive behavior */
+
 @media (max-width: 768px) {
   .responsive-container {
     text-align: center;
@@ -386,7 +527,7 @@ setTimeout(() => {
   }
 }
 
-/* Default styles for larger screens */
+
 .responsive-container {
   text-align: left;
 }

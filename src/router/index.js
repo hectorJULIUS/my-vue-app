@@ -9,6 +9,8 @@ import DashboardView from '../views/DashboardView.vue';
 import ProfileView from '../views/ProfileView.vue';
 import DashboardHomeView from '../views/DashboardHomeView.vue';
 import store from '../store/index';
+import NotFoundView from '../views/NotFoundView.vue';
+
 
 
 
@@ -19,9 +21,15 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/:catchAll(.*)',
+    name: '404',
+    component: NotFoundView,
+  },
+  {
     path: '/services',
     name: 'services',
-    component: ServicesViews
+    component: ServicesViews,
+    meta: { requiresAuth: false }
   },
   {
     path: '/about',
@@ -69,6 +77,7 @@ const routes = [
   }
 ];
 
+
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
@@ -78,13 +87,12 @@ router.beforeEach((to, from, next) => {
   const isLoggedIn = store.getters.isLoggedIn;
 
   if (to.meta.isLoggedIn && !isLoggedIn) {
-    // If the route requires authentication and the user is not logged in, redirect to the login page.
     next('/login');
   } else if (!to.meta.isLoggedIn && isLoggedIn) {
-    // If the route should not be accessible when logged in, and the user is logged in, redirect to the dashboard.
+    
     next('/dashboard');
   } else {
-    // Otherwise, allow the navigation to proceed.
+    
     next();
   }
 });
