@@ -262,7 +262,7 @@
     
     <div class="testimonials">
       <div class="inner">
-        <h1 class="subheading-text">Testimonials</h1>
+        <h1 class="subheading-text">What Clients Say</h1>
         <div class="border"></div>
 
         <div class="row">

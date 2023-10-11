@@ -10,6 +10,7 @@ import ProfileView from '../views/ProfileView.vue';
 import DashboardHomeView from '../views/DashboardHomeView.vue';
 import store from '../store/index';
 import NotFoundView from '../views/NotFoundView.vue';
+import QuotationView from '../views/QuotationView.vue'
 
 
 
@@ -24,6 +25,7 @@ const routes = [
     path: '/:catchAll(.*)',
     name: '404',
     component: NotFoundView,
+    meta: { requiresAuth: true },
   },
   {
     path: '/services',
@@ -65,6 +67,12 @@ const routes = [
         path: 'profile',
         name: 'profile',
         component: ProfileView,
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'quotation',
+        name: 'quotation',
+        component: QuotationView,
         meta: { requiresAuth: true }
       },
       {

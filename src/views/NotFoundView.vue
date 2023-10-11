@@ -26,7 +26,6 @@
   transition: background-color 0.3s ease;
 }
   .not-found-container {
-    background-image:url('../assets/img/404.jpg');
     height:100%;
     background-size: cover;
     text-align: center;
