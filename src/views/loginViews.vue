@@ -33,63 +33,66 @@ import axios from 'axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import Footer from '../components/FooterDown.vue'
+import Footer from '../components/FooterDown.vue';
 import Swal from 'sweetalert2';
 
 const user = ref({
     username: '',
     password: ''
-})
+});
 
 const router = useRouter();
 const store = useStore();
-
 const loginMessage = ref('');
 
 const login = async () => {
-  loginMessage.value = ''; // Initialize the message as empty
+  loginMessage.value = '';
 
   try {
     const response = await axios.post('http://127.0.0.1:8000/api/login', user.value);
-    console.log(response.data.token);
+    console.log(response);
     const authToken = response.data.token;
     localStorage.setItem('auth-token', authToken);
+    localStorage.setItem('username', response.data.user.username);
+    localStorage.setItem('email', response.data.user.email);
+    localStorage.setItem('id', response.data.user.id);
     store.commit('setIsLoggedIn');
 
-    // Display a success pop-up message
+    const id = response.data.user.id; 
+
     await Swal.fire({
       title: 'Login successful',
       icon: 'success',
-      timer: 2000, // Auto close the pop-up after 2 seconds (optional)
+      timer: 2000,
     });
 
-    router.push({ name: 'dashboard' });
-  } catch (error) {
-    console.log(error);
-
-    // Check the error condition before displaying the error pop-up
-    if (error.response && error.response.status === 401) {
-      // Display an error pop-up message for wrong credentials
-      await Swal.fire({
-        title: 'Wrong credentials',
-        text: 'Please check your username and password and try again.',
-        icon: 'error',
-      });
-
-      loginMessage.value = 'Wrong credentials'; // Update the message after displaying the error
+    if (id === 2) {
+      router.push({ name: 'admin' });
     } else {
-      // Handle other types of errors (e.g., network issues)
-      console.error('An unexpected error occurred:', error);
+      router.push({ name: 'dashboard' });
+    }
+  } catch (error) {
+    console.error('An error occurred during login:', error);
 
-      // You can choose to display a different error message or take other actions here
+    if (axios.isAxiosError(error)) {
+      if (error.response && error.response.status === 401) {
+        await Swal.fire({
+          title: 'Wrong credentials',
+          text: 'Please check your username and password and try again.',
+          icon: 'error',
+        });
+
+        loginMessage.value = 'Wrong credentials';
+      } else {
+        console.error('Axios response:', error.response);
+      }
     }
   }
-};
-
-// Call the login function to initiate the login process
-login();
+}
 
 </script>
+
+
 
   
   <style scoped>

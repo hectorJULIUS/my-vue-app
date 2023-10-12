@@ -1,169 +1,181 @@
 <template>
-  <v-container class="profile">
-    <!-- Profile Card -->
-    <v-card class="pa-4 mb-4">
-      <v-row align="center">
-        <v-col cols="12" sm="6" md="4">
-          <v-file-input
-            v-model="file"
-            label="Upload Profile Picture"
-            accept="image/*"
-            @change="uploadFile"
-          ></v-file-input>
-        </v-col>
-        <v-col cols="12" sm="6" md="8" class="text-center">
-          <img class="profile-picture" :src="formattedImageUrl" alt="Profile Picture" />
-          <h1 class="mb-2">{{ fullName }}</h1>
-          <p class="subtitle">{{ jobTitle }}</p>
-        </v-col>
-      </v-row>
-    </v-card>
+  
+      
+  <table class="calendar">
+    <thead>
+      <tr>
+        <th colspan="7">October 2023</th>
+      </tr>
+      <tr>
+        <th>Sun</th>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+      </tr>
+    </thead>
+    <tbody id="calendar-body">
+    </tbody>
+  </table>
 
-    <!-- Save Changes Button -->
-    <v-card class="profile-footer pa-4">
-      <v-btn color="primary" @click="updateProfile" :disabled="uploading || !file">
-        <template v-if="uploading">
-          <span class="mr-1">Uploading...</span>
-          <v-icon>mdi-loading</v-icon>
-        </template>
-        <template v-else>
-          Save Changes
-          <v-icon right>mdi-content-save</v-icon>
-        </template>
-      </v-btn>
-    </v-card>
-  </v-container>
+  <div class="user-details">
+  <h2>Your Details</h2>
+  <div class="user-details-container">
+    <div class="user-detail">
+      <label>Username:</label>
+      <span>{{ username }}</span>
+    </div>
+    <div class="user-detail">
+      <label>Email:</label>
+      <span>{{ email }}</span>
+    </div>
+  </div>
+</div>
+
+
+
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
-import { useStore } from 'vuex';
+import { ref, onMounted } from 'vue';
 
-const file = ref(null);
-const imageUrl = ref(null);
-const uploading = ref(false);
-const store = useStore();
+const username = ref('');
+const email = ref('');
 
-const fileName = computed(() => file.value?.name);
-const fileExtension = computed(() => fileName.value?.split('.').pop());
-const fileMimeType = computed(() => file.value?.type);
+async function fetchUserDetails() {
+  const token = localStorage.getItem('auth-token');
+  console.log(token);
 
-const uploadFile = (event) => {
-  file.value = event.target.files[0];
-};
-
-const formattedImageUrl = computed(() => imageUrl.value?.replace(/\\/g, ''));
-
-// Fetch the user's profile data when the component is mounted
-onMounted(async () => {
   try {
-    const accessToken = localStorage.getItem('auth-token');
-    const endpoint = `http://127.0.0.1:8000/api/profile/${store.state.userId}`;
-    const response = await axios.get(endpoint, {
+    const response = await axios.get('http://localhost:8000/api/user', {
       headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
+        Authorization: `Bearer ${token}`
+      }
     });
 
-    // Assign fetched data to respective data properties
-    imageUrl.value = response.data.profile;
+    console.log(response);
+    username.value = response.data.details.username;
+    email.value = response.data.details.email;
   } catch (error) {
     console.error(error);
   }
+  const calendarBody = document.getElementById('calendar-body');
+    const daysInMonth = 31; // Replace with the actual number of days in the month
+
+    // Function to generate the calendar
+    function generateCalendar() {
+      let dayCounter = 1;
+      let html = '';
+
+      for (let week = 0; week < 5; week++) {
+        html += '<tr>';
+
+        for (let day = 0; day < 7; day++) {
+          if (dayCounter <= daysInMonth) {
+            html += `<td>${dayCounter}</td>`;
+            dayCounter++;
+          } else {
+            html += '<td></td>';
+          }
+        }
+
+        html += '</tr>';
+      }
+
+      calendarBody.innerHTML = html;
+    }
+
+    generateCalendar();
+
+}
+
+onMounted(() => {
+  fetchUserDetails();
 });
-
-const updateProfile = async () => {
-  if (!file.value) {
-    return;
-  }
-
-  uploading.value = true;
-
-  const formData = new FormData();
-  formData.append('file', file.value);
-  formData.append('fileName', fileName.value);
-  formData.append('fileExtension', fileExtension.value);
-  formData.append('fileMimeType', fileMimeType.value);
-  formData.append('_method', 'PATCH');
-
-  try {
-    const accessToken = localStorage.getItem('auth-token');
-    const endpoint = `http://127.0.0.1:8000/api/profile/${store.state.userId}`;
-    const response = await axios.post(endpoint, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    imageUrl.value = response.data.image_url;
-  } catch (error) {
-    console.error(error);
-  } finally {
-    uploading.value = false;
-  }
-};
 </script>
 
-<style scoped>
-.profile {
+
+  <style scoped>
+    .calendar {
+      font-family: Arial, sans-serif;
+      border-collapse: collapse;
+      width: 300px;
+    }
+
+    .calendar th, .calendar td {
+      border: 1px solid #ddd;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .calendar th {
+      background-color: #009688;
+      color: #fff;
+    }
+
+    .calendar td {
+      cursor: pointer;
+    }
+
+    .calendar td:hover {
+      background-color: #e6e6e6;
+    }
+
+    .calendar .current-month {
+      background-color: #f2f2f2;
+    }
+
+    .calendar .today {
+      background-color: #ff6666;
+    }
+
+    .user-details {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  max-width: 800px;
+  text-align: center;
+  width: 300px;
   margin: 0 auto;
 }
 
-.profile-picture {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #007BFF;
+h2 {
+  font-size: 24px;
   margin-bottom: 20px;
+  color: #333;
 }
 
-.profile-footer {
-  text-align: center;
-  background-color: #f2f2f2;
-  padding: 20px 0;
-  border-top: 1px solid #ccc;
+.user-details-container {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
 }
 
-.file-input {
-  display: none;
-}
-
-.upload-button {
-  background-color: #007BFF;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.upload-button:hover {
-  background-color: #0056b3;
-}
-
-.about-me {
-  font-size: 16px;
-}
-
-.work-experience {
+.user-detail {
+  display: flex;
+  align-items: center;
   font-size: 18px;
-  margin-top: 20px;
+  color: #555;
+  margin: 10px 0;
 }
 
-.work-experience-title {
+label {
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-right: 10px;
 }
 
-.work-experience-details {
-  margin-bottom: 20px;
+span {
+  flex-grow: 1;
+  color: #009688;
+  font-weight: bold;
 }
-
-/* Add more specific styles if needed */
-</style>
+  
+  /* Add additional styling as needed */
+  </style>
+  

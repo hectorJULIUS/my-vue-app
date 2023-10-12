@@ -1,10 +1,7 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-
-
-// Vuetify
+import { createApp } from 'vue'; // Import createApp from Vue
+import App from './App.vue';
+import router from './router';
+import store from './store';
 import "@mdi/font/css/materialdesignicons.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
@@ -23,8 +20,12 @@ const vuetify = createVuetify({
       mdi,
     },
   },
-})
+});
 
+const app = createApp(App); // Create a Vue app instance
 
+app.use(store);
+app.use(router);
+app.use(vuetify);
 
-createApp(App).use(store).use(router).use(vuetify).mount('#app')
+app.mount('#app'); // Mount the app to the '#app' element in your HTML

@@ -1,86 +1,116 @@
 <template>
-    <div class="user-details-container">
-      <h2>User Details</h2>
-      <div class="user-details">
-        <div class="user-detail">
-          <label>Name:</label>
-          <span>{{ userData.name }}</span>
+  <div>
+    <v-card class="payment-card">
+      <v-card-title class="payment-heading">M-Pesa Payment</v-card-title>
+      <v-card-text>
+        <div class="input-group">
+          <label for="phoneNumber" class="input-label">Phone Number:</label>
+          <input type="text" id="phoneNumber" class="input-field" v-model="phoneNumber" />
         </div>
-        <div class="user-detail">
-          <label>Email:</label>
-          <span>{{ userData.email }}</span>
+        <div class="input-group">
+          <label for="amount" class="input-label">Amount (USD):</label>
+          <input type="text" id="amount" class="input-field" v-model="usdAmount" />
         </div>
-        <!-- Add more user details as needed -->
-      </div>
-    </div>
-  </template>
-  
-  
-  
-  <script>
-  import axios from 'axios';
-  
-  export default {
-    data() {
-      return {
-        userData: {},
-      };
-    },
-    created() {
-      this.fetchUserDetails();
-    },
-    methods: {
-      fetchUserDetails() {
-        axios.get('/api/user') // Adjust the URL to match your Laravel API endpoint
-          .then(response => {
-            // Handle the response and update your component's data
-            this.userData = response.data;
-          })
-          .catch(error => {
-            // Handle errors
-            console.error(error);
-          });
-      },
-    },
-  };
-  </script>
+        <div class="amount-display">
+          Amount (KES): {{ kesAmount }}
+        </div>
+        <button @click="generateQRCode" class="payment-button">Generate QR Code</button>
+        <div v-if="qrCode" class="qr-code">
+          <img :src="qrCode" alt="QR Code" />
+        </div>
+        
+      </v-card-text>
+    </v-card>
+  </div>
+</template>
 
-  <style scoped>
-  .user-details-container {
-    background-color: #f5f5f5;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .user-details {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .user-detail {
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    color: #555;
-  }
-  
-  label {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  span {
-    flex-grow: 1;
-  }
-  
-  /* Add additional styling as needed */
-  </style>
-  
+<script>
+import QRCode from 'qrcode-generator';
+
+export default {
+  data() {
+    return {
+      phoneNumber: '',
+      usdAmount: '', // Input in USD
+      qrCode: null,
+    };
+  },
+  computed: {
+    kesAmount() {
+      // Convert USD to KES using the exchange rate (1 USD = 150 KES)
+      return (parseFloat(this.usdAmount) * 150).toFixed(2);
+    },
+  },
+  methods: {
+    generateQRCode() {
+      const qr = new QRCode(0, 'H');
+      qr.addData(`M-Pesa Payment: ${this.kesAmount} KES`);
+      qr.make();
+      const qrData = qr.createDataURL(6);
+      this.qrCode = qrData;
+    },
+  },
+};
+</script>
+
+<style scoped>
+.payment-card {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.payment-heading {
+  font-size: 24px;
+  color: #009688; /* Choose your preferred color */
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-label {
+  display: block;
+  font-size: 16px;
+  color: #333;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.payment-button {
+  background-color: #009688; /* Choose your preferred color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  display: block;
+  margin: 0 auto;
+}
+
+.payment-button:hover {
+  background-color: #007a6d; /* Hover color */
+}
+
+.qr-code {
+  text-align: center;
+}
+
+.qr-code img {
+  max-width: 100%;
+}
+
+.amount-display {
+  font-size: 18px;
+  text-align: center;
+}
+</style>

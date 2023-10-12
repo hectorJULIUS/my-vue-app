@@ -11,6 +11,11 @@ import DashboardHomeView from '../views/DashboardHomeView.vue';
 import store from '../store/index';
 import NotFoundView from '../views/NotFoundView.vue';
 import QuotationView from '../views/QuotationView.vue'
+import UserList from '../views/UserList.vue'; 
+import CreateUser from '../views/CreateUser.vue'; 
+import EditUser from '../views/EditUser.vue'; 
+import AdminView from '../views/AdminView.vue'; 
+import ClientView from '../views/ClientView.vue'; 
 
 
 
@@ -20,6 +25,29 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/admin',
+    component: AdminView,
+    name: 'admin',
+    children: [
+      {
+        path: 'users',
+        name: 'adminUsers',
+        component: UserList,
+      },
+      {
+        path: 'create',
+        name: 'adminCreateUser',
+        component: CreateUser,
+      },
+      {
+        path: 'edit/:id',
+        name: 'adminEditUser',
+        component: EditUser,
+      },
+     
+    ],
   },
   {
     path: '/:catchAll(.*)',
@@ -76,7 +104,13 @@ const routes = [
         meta: { requiresAuth: true }
       },
       {
-        path: 'home',
+        path: 'client',
+        name: 'client',
+        component: ClientView,
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'payment',
         name: 'dashboardHome',
         component: DashboardHomeView,
         meta: { requiresAuth: true }
@@ -84,6 +118,7 @@ const routes = [
     ]
   }
 ];
+
 
 
 const router = createRouter({

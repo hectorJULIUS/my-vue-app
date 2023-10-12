@@ -9,12 +9,11 @@
           
 
           <v-list density="compact" nav>
-              <v-list-item style="text-align: left;" prepend-icon="mdi-home" title="Dashboard" value="dashboard" to="/dashboard/home"></v-list-item>
+              
               <v-list-item style="text-align: left;" prepend-icon="mdi-account-check" title="Profile" value="profile" to="/dashboard/profile"></v-list-item>
               
               <v-list-item title="Quotation Calc" prepend-icon="mdi-format-quote-open" value="quotation" to="/dashboard/quotation"  style="text-align: left;"></v-list-item>
-              <v-list-item title="Review" prepend-icon="mdi-thumb-up" value="quotation" style="text-align: left;"></v-list-item>
-              <v-list-item title="Settings" prepend-icon="mdi-shape-plus" value="quotation"  style="text-align: left;"></v-list-item>
+              <v-list-item title="services" prepend-icon="mdi-shape-plus" value="client"  to="/dashboard/client" style="text-align: left;"></v-list-item>
               <v-list-item title="Logout" prepend-icon="mdi-logout" value="profile" @click="handleLogout" style="text-align: left;color:red;"></v-list-item>
           </v-list>
           
@@ -32,6 +31,7 @@
       </v-main>
     </v-container>
   </v-layout>
+  
 </template>
 
 <script>
