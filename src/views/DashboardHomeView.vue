@@ -1,116 +1,99 @@
 <template>
   <div>
-    <v-card class="payment-card">
-      <v-card-title class="payment-heading">M-Pesa Payment</v-card-title>
+    <v-card class="card">
       <v-card-text>
-        <div class="input-group">
-          <label for="phoneNumber" class="input-label">Phone Number:</label>
-          <input type="text" id="phoneNumber" class="input-field" v-model="phoneNumber" />
-        </div>
-        <div class="input-group">
-          <label for="amount" class="input-label">Amount (USD):</label>
-          <input type="text" id="amount" class="input-field" v-model="usdAmount" />
-        </div>
-        <div class="amount-display">
-          Amount (KES): {{ kesAmount }}
-        </div>
-        <button @click="generateQRCode" class="payment-button">Generate QR Code</button>
-        <div v-if="qrCode" class="qr-code">
-          <img :src="qrCode" alt="QR Code" />
-        </div>
-        
+        <p>
+          <strong>Why Pay the 1000 Commitment Fee?</strong>
+        </p>
+        <p>
+          Paying the commitment fee helps support our services and ensures your spot is reserved. It's a small investment for peace of mind.
+        </p>
       </v-card-text>
+      <v-card-actions>
+        <paystack
+          buttonClass="button-class btn btn-primary"
+          buttonText="CHECKOUT"
+          :publicKey="publicKey"
+          :email="email"
+          :amount="Amount"
+          :reference="reference"
+          :onSuccess="onSuccessfulPayment"
+          :onCancel="onCancelledPayment"
+          :currency="'KES'"
+        ></paystack>
+      </v-card-actions>
     </v-card>
   </div>
 </template>
 
 <script>
-import QRCode from 'qrcode-generator';
+import paystack from "vue3-paystack";
+import { nanoid } from "nanoid";
 
 export default {
-  data() {
-    return {
-      phoneNumber: '',
-      usdAmount: '', // Input in USD
-      qrCode: null,
-    };
+  components: {
+    paystack,
   },
+  data: () => ({
+    publicKey: 'pk_test_5e2d37b4179fe564100248b6f283a246ad441b63',
+    Amount: 100000,
+    email: '', // Initialize email to an empty string
+    firstname: 'User', // Initialize username to a default value
+    lastname: 'User',
+  }),
   computed: {
-    kesAmount() {
-      // Convert USD to KES using the exchange rate (1 USD = 150 KES)
-      return (parseFloat(this.usdAmount) * 150).toFixed(2);
+    reference: function() {
+      return nanoid(15);
     },
   },
+  created() {
+    // Fetch username and email from local storage
+    const storedUsername = localStorage.getItem('username');
+    const storedEmail = localStorage.getItem('email');
+    if (storedUsername && storedEmail) {
+      this.firstname = storedUsername;
+      this.email = storedEmail;
+    }
+  },
   methods: {
-    generateQRCode() {
-      const qr = new QRCode(0, 'H');
-      qr.addData(`M-Pesa Payment: ${this.kesAmount} KES`);
-      qr.make();
-      const qrData = qr.createDataURL(6);
-      this.qrCode = qrData;
+    payNow() {
+      // Handle payment initiation if needed
+    },
+    onSuccessfulPayment() {
+      const transactionNumber = nanoid(10); 
+      localStorage.setItem('transactionNumber', transactionNumber);
+    },
+    onCancelledPayment() {
+      // Handle canceled payment here
     },
   },
 };
 </script>
 
-<style scoped>
-.payment-card {
-  max-width: 400px;
-  margin: 0 auto;
-}
 
-.payment-heading {
-  font-size: 24px;
-  color: #009688; /* Choose your preferred color */
+
+<style scoped>
+.card {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 
-.input-group {
-  margin-bottom: 20px;
-}
-
-.input-label {
-  display: block;
-  font-size: 16px;
-  color: #333;
-}
-
-.input-field {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-}
-
-.payment-button {
-  background-color: #009688; /* Choose your preferred color */
-  color: white;
+.pay-now-button {
+  background-color: #009688;
+  color: #fff;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
-  font-size: 16px;
+  margin: 10px 0;
   transition: background-color 0.3s;
-  display: block;
-  margin: 0 auto;
 }
 
-.payment-button:hover {
-  background-color: #007a6d; /* Hover color */
-}
-
-.qr-code {
-  text-align: center;
-}
-
-.qr-code img {
-  max-width: 100%;
-}
-
-.amount-display {
-  font-size: 18px;
-  text-align: center;
+.pay-now-button:hover {
+  background-color: #007a6d;
 }
 </style>

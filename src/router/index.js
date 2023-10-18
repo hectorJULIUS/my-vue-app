@@ -42,7 +42,7 @@ const routes = [
         component: CreateUser,
       },
       {
-        path: 'edit/:id',
+        path: '/transactions',
         name: 'adminEditUser',
         component: EditUser,
       },

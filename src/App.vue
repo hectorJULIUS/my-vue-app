@@ -10,32 +10,11 @@
         <v-btn to="/login">Login</v-btn>
         <v-btn  style=" color: #ffffff; background-color: #000000;border-radius: 20px; margin-right: 16px;" class="contact" to="/contact">Contact Us <v-icon right>mdi-arrow-right</v-icon>
         </v-btn>
-        
     </v-toolbar>
-    <!-- The isLoggedIn value will display whether the user is logged in or not -->
-    <!-- {{ store.state.isLoggedIn }} -->
-
-    <!-- The router-view will display the components based on the route -->
     <router-view />
-
-    <!-- The Home component will be displayed below the router-view -->
-    <Home />
-
-    <!-- Include the Footer component on every page -->
+    <Home/>
   </div>
 </template>
-
-<script setup>
-import { RouterView } from 'vue-router';
-</script>
-
-
-<!-- <script setup>
-import { useStore } from 'vuex';
-
-
-const store = useStore();
-</script> -->
 
 
 

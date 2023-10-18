@@ -23,6 +23,14 @@
             to="/admin/create"
             style="text-align: left;"
           ></v-list-item>
+
+          <v-list-item
+            title="transactions"
+            prepend-icon="mdi-bookmark-check"
+            
+            to="/transactions"
+            style="text-align: left;"
+          ></v-list-item>
           
           <v-list-item
             title="Logout"

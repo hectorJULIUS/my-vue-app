@@ -26,6 +26,9 @@
                 <div class="border"></div>
                 <p>{{ service.description }}</p>
                 </v-list-item>
+                <RouterLink to="/dashboard/payment" class="btn">
+                  Request
+                </RouterLink>
             </div>
             </v-card-text>
           </v-card>
@@ -56,19 +59,19 @@
       filteredServices() {
         const query = this.searchService.toLowerCase().trim();
         if (!query) {
-          return this.services; // If the query is empty, return all services.
+          return this.services;
         }
   
         return this.services.filter(service => {
-          // Use a case-insensitive search by converting service names to lowercase.
+          
           return service.name.toLowerCase().includes(query);
         });
       },
     },
     methods: {
-      // Function to scroll to the corresponding service card
+      
       scrollToService(index) {
-        // Scroll to the element with the corresponding index
+        
         const element = this.$el.querySelectorAll('.service-card-item')[index];
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
@@ -76,13 +79,23 @@
         }
       },
       filterServices() {
-        // This method is called when the user types in the search field. The computed property handles the filtering.
+       
       },
     },
   };
   </script>
   
   <style scoped>
+  .btn {
+  
+  width: 100%;
+  padding: 10px;
+  background-color: #0b0b0b;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
   .black-text {
   color: black;
   }

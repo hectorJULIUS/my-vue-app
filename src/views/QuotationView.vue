@@ -5,18 +5,19 @@
       <form id="quotation-form">
         <div class="form-group">
           <label for="category">Category:</label>
-          <select v-model="category" class="select-box">
+          <select v-model="category" class="select-box" id="category">
             <option value="painting">Painting</option>
             <option value="plumbing">Plumbing</option>
             <option value="lighting">Lighting</option>
           </select>
         </div>
 
+        
         <div class="form-group">
           <label for="quantity">Quantity/Number of lights/Number of Walls</label>
           <input type="number" id="quantity" v-model="quantity" min="0" class="input-box" @input="calculateTotal" />
         </div>
-        
+
         <div class="form-group">
           <label for="price-per-unit">Price per Unit (Default: $100):</label>
           <input type="number" id="price-per-unit" v-model="pricePerUnit" min="0" class="input-box" @input="calculateTotal" />
@@ -25,17 +26,6 @@
         <button @click="generatePDF" class="pdf-button">Generate PDF</button>
       </form>
       <div id="quotation-summary" class="quotation-summary">Total: ${{ total.toFixed(2) }}</div>
-    </div>
-    <div class="paragraph-section">
-      <p class="message">
-        Dear Valued Customer,
-        <span class="highlight">Exciting Offer:</span> Get a <span class="discount">30% OFF</span> on your service fee by making an early payment for your quotation. We deeply appreciate your trust in us and your proactive approach to securing top-quality service.
-        
-        Taking advantage of this exclusive offer is a breeze. Simply click the "Pay Now!" button to proceed with your payment and unlock this fantastic discount. You'll not only receive exceptional service but also enjoy significant savings on your project.
-        
-        Don't miss out on this opportunity! Secure your <span class="discount">30% discount</span> now and experience the best in service excellence. Thank you for choosing us as your trusted partner.
-        <router-link class="calculate-button" to="/dashboard/payment">Pay Now!</router-link>
-      </p>
     </div>
   </div>
 </template>
@@ -48,7 +38,7 @@ export default {
     return {
       category: 'Painting',
       quantity: 0,
-      pricePerUnit: 100, 
+      pricePerUnit: 100,
       total: 0,
     };
   },
@@ -86,11 +76,12 @@ export default {
       const filename = `quotation_${Date.now()}.pdf`;
       doc.save(filename);
     },
+    
   },
 };
 </script>
   
-  <style scoped>
+<style scoped>
 
 .paragraph-section {
   background-color: #f3f3f3;
